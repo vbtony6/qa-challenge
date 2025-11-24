@@ -1,0 +1,6 @@
+com\qa\challenge\runners\TestRunner.class
+com\qa\challenge\utils\TokenReader.class
+com\qa\challenge\pages\LoginPage.class
+com\qa\challenge\pages\ProfilePage.class
+com\qa\challenge\steps\LoginSteps.class
+com\qa\challenge\steps\DemoQASteps.class
