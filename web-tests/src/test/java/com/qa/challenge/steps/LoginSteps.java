@@ -26,7 +26,7 @@ public class LoginSteps {
         profilePage = new ProfilePage(driver);
     } */
 
-    @Given("the user is already authenticated via API")
+    /* @Given("the user is already authenticated via API")
     public void the_user_is_authenticated_via_api() throws Exception {
 
         JSONObject token = TokenReader.readToken();
@@ -40,7 +40,7 @@ public class LoginSteps {
         js.executeScript("localStorage.setItem('expires', arguments[0]);", token.getString("expires"));
 
         driver.navigate().refresh();
-    }
+    } */
 
     @Then("the profile page should be displayed")
     public void the_profile_page_should_be_displayed() {
