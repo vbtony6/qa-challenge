@@ -1,7 +1,7 @@
 Feature: DemoQA Login
 
-  Scenario: Successful login in DemoQA Book Store
-    Given the user is on the DemoQA login page
-    When the user enters valid credentials
-    And clicks the login button
+  Scenario: Successful login using API token
+    Given the browser is open
+    And the user is already authenticated via API
+    When the user opens the profile page
     Then the user should see the profile page

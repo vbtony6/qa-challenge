@@ -7,13 +7,11 @@ public class ProfilePage {
 
     private WebDriver driver;
 
-    private By profileHeader = By.xpath("//div[@class='main-header' and text()='Profile']");
-
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
 
     public boolean isDisplayed() {
-        return driver.findElement(profileHeader).isDisplayed();
+        return driver.findElement(By.xpath("//div[@class='main-header' and text()='Profile']")).isDisplayed();
     }
 }
