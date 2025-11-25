@@ -2,7 +2,6 @@ package com.qa.challenge.api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DemoQAApiTest {
 
     @Test
-    public void testGetBooks() {
-        // Definir base URI
+    void testGetBooks() {
+
+        // Base URL de la API
         RestAssured.baseURI = "https://demoqa.com";
 
-        // Realizar GET request a la API de libros
+        // GET /BookStore/v1/Books
         Response response = RestAssured
                 .given()
                 .when()
@@ -23,10 +23,12 @@ public class DemoQAApiTest {
                 .extract()
                 .response();
 
-        // Verificar que el status code sea 200 OK
-        assertEquals(200, response.getStatusCode(), "El status code debe ser 200");
+        // Validar status code
+        assertEquals(200, response.getStatusCode(),
+                "El status debe ser 200");
 
-        // Opcional: imprimir el body de la respuesta
-        System.out.println("Response Body: " + response.getBody().asString());
+        // Imprimir respuesta para debugging
+        System.out.println("\n📘 Response Body:");
+        System.out.println(response.getBody().asString());
     }
 }
