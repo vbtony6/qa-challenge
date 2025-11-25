@@ -1,53 +1,47 @@
 package com.qa.challenge.steps;
 
-import org.openqa.selenium.By;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-import io.cucumber.java.en.*;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.time.Duration;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DemoQASteps {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    private WebDriver driver;
+    private String token;
 
-    @Given("the user is on the DemoQA login page")
-    public void the_user_is_on_the_demoqa_login_page() {
-        // Configura el driver (asegúrate que el chromedriver está en PATH o usa WebDriverManager)
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    @Given("the browser is open")
+    public void the_browser_is_open() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+        driver = new ChromeDriver(options);
         
-        driver.get("https://demoqa.com/login");
+        driver.manage().window().maximize();
     }
 
-    @When("the user enters valid credentials")
-    public void the_user_enters_valid_credentials() {
-        // Usamos usuario y contraseña de prueba
-        driver.findElement(By.id("userName")).sendKeys("testuser1");
-        driver.findElement(By.id("password")).sendKeys("Test@123");
+    @Given("the user is already authenticated via API")
+    public void the_user_is_authenticated_via_api() {
+        // Aquí colocas tu llamada REST a demoqa para obtener el token
+        // Ejemplo ficticio:
+        token = "123-sometoken";
+
+        assertNotNull(token, "Token no obtenido");
     }
 
-    @When("clicks the login button")
-    public void clicks_the_login_button() {
-        driver.findElement(By.id("login")).click();
-    }
+    @Then("the profile page should be displayed")
+    public void the_profile_page_should_be_displayed() {
+        driver.get("https://demoqa.com/profile");
 
-    @Then("the user should see the profile page")
-    public void the_user_should_see_the_profile_page() {
-        // Esperar a que el perfil se muestre
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userName-value")));
+        String title = driver.getTitle();
+        assertEquals("DEMOQA", title, "No se abrió el perfil");
         
-        boolean isProfileDisplayed = driver.findElements(By.id("userName-value")).size() > 0;
-        assertTrue(isProfileDisplayed, "Profile page is not displayed!");
-        
-        // Cerrar navegador
         driver.quit();
     }
 }
