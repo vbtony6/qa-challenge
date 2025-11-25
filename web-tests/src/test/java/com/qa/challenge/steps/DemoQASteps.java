@@ -25,6 +25,9 @@ public class DemoQASteps {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--headless=new");
+        options.addArguments("--user-agent=Mozilla/5.0");
+        options.addArguments("--disable-blink-features=AutomationControlled");
 
         driver = new ChromeDriver(options);
         driver.get("https://demoqa.com/login");
@@ -37,8 +40,8 @@ public class DemoQASteps {
 
     @When("the user enters valid credentials")
     public void the_user_enters_valid_credentials() {
-        loginPage.enterUsername("testuser");
-        loginPage.enterPassword("TestPass123!");
+        loginPage.enterUsername("jalazo");
+        loginPage.enterPassword("Ayesa2025**!!");
     }
 
     @When("clicks the login button")
