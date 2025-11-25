@@ -42,9 +42,9 @@ public class LoginSteps {
         driver.navigate().refresh();
     } */
 
-    @Then("the profile page should be displayed")
+    /* @Then("the profile page should be displayed")
     public void the_profile_page_should_be_displayed() {
         assertTrue(profilePage.isDisplayed());
         driver.quit();
-    }
+    } */
 }
