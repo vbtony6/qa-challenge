@@ -19,12 +19,12 @@ public class LoginSteps {
     private LoginPage loginPage;
     private ProfilePage profilePage;
 
-    @Given("the browser is open")
+    /* @Given("the browser is open")
     public void the_browser_is_open() {
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
-    }
+    } */
 
     @Given("the user is already authenticated via API")
     public void the_user_is_authenticated_via_api() throws Exception {
